@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE imgdsp>
+<imgdsp>
+    <programs>
+        <program name="Hue Change">
+            <params>
+		<param name="Hue change" min="-10" current="0" max="10"/>
+            </params>
+        </program>
+        <program name="Hide n Seek">
+            <params>
+                <param name="number of horizontal blocks" min="1" current="5" max="10"/>
+                <param name="number of vertical blocks" min="1" current="5" max="10"/>
+		<param name="random block percentage" min="0" current="40" max="70"/>
+            </params>
+        </program>
+	<program name="Rotate">
+            <params>
+                <param name="angle" min="0" current="90" max="360"/>
+            </params>
+        </program>
+	<program name="Unsharp Masking">
+            <params>
+                <param name="N" min="8" current="64" max="255"/>
+		<param name="B" min="8" current="64" max="255"/>
+		<param name="lambda" min="-1" current="0" max="1"/>
+            </params>
+        </program>
+    </programs>
+    <in_imgs>
+        <in_img file_name="playing_kitten.jpg"/>
+        <in_img file_name="baboon.bmp"/>
+        <in_img file_name="green_cat.jpg"/>
+        <in_img file_name="Party.jpg"/>
+        <in_img file_name="CatWithGreenEyes.png"/>
+    </in_imgs>
+    <out_imgs>
+        <out_img file_name="processed_img.jpg"/>
+    </out_imgs>
+</imgdsp>

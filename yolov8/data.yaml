@@ -1,0 +1,6 @@
+path: C:/Users/tbran/Desktop/banana_detection_model
+train: images/train
+val: images/valid
+test: images/test
+
+names: ['OverRipe', 'Ripe', 'VeryRipe']
