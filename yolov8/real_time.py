@@ -6,8 +6,8 @@ import time
 
 mode = 1 # 0-train, 1-detect
 model = YOLO('C:/Users/tbran/Desktop/banana_detection_model/script/runs/detect/train6/weights/best.pt')
-#class_id = ["OverRipe", "Ripe", "VeryRipe"]
-class_id = ['O', 'R', 'V']
+class_id = ["OverRipe", "Ripe", "VeryRipe"]
+#class_id = ['O', 'R', 'V']
 
 if __name__ == "__main__":
     arduino = serial.Serial(port='COM4', baudrate=9600, bytesize=8)
@@ -21,19 +21,18 @@ if __name__ == "__main__":
 
         while (True):
 
-
-
             ret, frame = video.read()
-            results = model(frame)[0]
+            results = model(frame, conf=0.6)[0]
             detections = sv.Detections.from_yolov8(results)
 
             # Extracting confidence score and class id from above results
             results_list = results.boxes.data.tolist()
             for data in results_list:
-                #print("Confidence score: " + str(data[4]))
-                #print("Class: " + banana_class)
-                banana_class = class_id[int(data[5])]
-                arduino.write(banana_class.encode())
+                print(data)
+                if int(data[5]) != 1:
+                    command = '1'
+                    arduino.write(command.encode())
+
 
             # Drawing bounding boxes on the frame
             frame = bounding_box_annotator.annotate(scene=frame, detections=detections)
@@ -47,6 +46,6 @@ if __name__ == "__main__":
         # Close serial port
         arduino.close()
         # After the loop release the cap object
-        vid.release()
+        video.release()
         # Destroy all the windows
         cv2.destroyAllWindows()
