@@ -1,14 +1,14 @@
 #include <AFMotor.h>
 
 #define MOTOR_SPEED 50
-#define MOTOR_STEP 200
-#define DELAY 2000 // milliseconds
+#define MOTOR_STEP 35
+#define DELAY 4000 // milliseconds
 
 // Number of steps per output rotation
 // Change this as per your motor's specification
 const int stepsPerRevolution = 200;
 
-// connect motor to port #2 (M3 and M4)
+// connect motor to port #1 (M1 and M2)
 AF_Stepper motor(stepsPerRevolution, 2);
 
 
@@ -24,6 +24,7 @@ void loop() {
   if(Serial.available()) {
     motor.step(MOTOR_STEP, FORWARD, SINGLE);
     delay(DELAY);
+    motor.step(MOTOR_STEP, BACKWARD, SINGLE);
     serial_flush();
   }
     
