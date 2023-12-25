@@ -1,2 +1,2 @@
 # Sorting-bananas-on-conveyor-belt
-Students project from the course "Digital image processing algorithms"
+Selection of bananas based on maturity using a camera on a conveyor belt.
